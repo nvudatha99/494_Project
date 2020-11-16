@@ -1,5 +1,5 @@
 
-var viz1, viz2, viz3, viz4;
+var viz1, viz2, viz3, viz4, g;
 
 var width;
 var height;
@@ -23,14 +23,43 @@ document.addEventListener('DOMContentLoaded', function () {
     innerWidth = width - margin.left - margin.right;
     innerHeight = height - margin.top - margin.bottom;
 
+    g = graphSvg
+        .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top + 20})`);
 
+    //
+    // Promise.all([
+    //     // d3.csv('Data-Sets/Dogs-Database.csv'),
+    //     // d3.csv('Data-Sets/Flights-Database.csv'),
+    //
+    // ])
+    //     .then(function (values) {
+    //
+    //      });
 
-    Promise.all([
-        // d3.csv('Data-Sets/Dogs-Database.csv'),
-        // d3.csv('Data-Sets/Flights-Database.csv'),
-
-    ])
-        .then(function (values) {
-
-         });
+    drawViz1();
+    drawViz2();
+    drawViz3();
+    drawViz4()
 });
+
+function drawViz1() {
+
+    g.select("#axis-g").remove();
+
+
+    let axis = g.append("g").attr("id", "axis-g");
+
+}
+
+function drawViz2() {
+
+}
+
+function drawViz3() {
+
+}
+
+function drawViz4() {
+
+}
