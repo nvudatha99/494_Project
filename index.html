@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="scripts/scripts.js"></script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -20,89 +21,97 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="#">Inprogress Vis 1</a>
-            <a class="nav-link" href="#">Inprogress Vis 2</a>
-            <a class="nav-link" href="#">Inprogress Vis 3</a>
-            <a class="nav-link" href="#">Inprogress Vis 4</a>
+            <a class="nav-link" href="#">Page 1</a>
+            <a class="nav-link" href="#">Page 2</a>
         </div>
     </div>
 </nav>
 <!-- End Nav Bar Code -->
-<div class="main_text">
 
-</div>
-<div class="main_section">
-
-</div>
 
 <div class="row">
     <h1 style="text-decoration: underline; width: 100%; margin-left: 4%; ">Select A Team To Analyze</h1>
 
-    <div class="column">
+    <div class="column1">
 
-        <img src="https://content.sportslogos.net/logos/6/220/full/9168_atlanta_hawks-primary-2016.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/213/full/slhg02hbef3j1ov4lsnwyol5o.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/3786/full/930_brooklyn-nets-partial-2013.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/5120/full/1926_charlotte__hornets_-primary-2015.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/221/full/hj3gmh82w9hffmeh3fjm5h874.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/228/full/3463_dallas_mavericks-primary-2018.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/229/full/8926_denver_nuggets-primary-2019.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/223/full/2164_detroit_pistons-primary-2018.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/235/full/3152_golden_state_warriors-primary-2020.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/230/full/6830_houston_rockets-primary-2020.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/224/full/4812_indiana_pacers-primary-2018.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/236/full/5462_los_angeles_clippers-primary-2016.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/237/full/uig7aiht8jnpl1szbi57zzlsh.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/231/full/4373_memphis_grizzlies-primary-2019.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/214/full/burm5gh2wvjti3xhei5h16k8e.gif" alt="">
+        <img id="ATL" src="https://content.sportslogos.net/logos/6/220/full/9168_atlanta_hawks-primary-2016.png"
+             alt="" onClick="getTeams('ATL')">
+        <img id="BOS" src="https://content.sportslogos.net/logos/6/213/full/slhg02hbef3j1ov4lsnwyol5o.png" alt=""
+             onClick="getTeams('BOS')">
+        <img id="BRK" src="https://content.sportslogos.net/logos/6/3786/full/930_brooklyn-nets-partial-2013.png" alt=""
+             onClick="getTeams('BRK')">
+        <img id="CHO" src="https://content.sportslogos.net/logos/6/5120/full/1926_charlotte__hornets_-primary-2015.png"
+             alt="" onClick="getTeams('CHO')">
+        <img id="CHI" src="https://content.sportslogos.net/logos/6/221/full/hj3gmh82w9hffmeh3fjm5h874.png" alt=""
+             onClick="getTeams('CHI')">
+        <img id="DAL" src="https://content.sportslogos.net/logos/6/228/full/3463_dallas_mavericks-primary-2018.png"
+             alt="" onClick="getTeams('DAL')">
+        <img id="DEN" src="https://content.sportslogos.net/logos/6/229/full/8926_denver_nuggets-primary-2019.png" alt=""
+             onClick="getTeams('DEN')">
+        <img id="DET" src="https://content.sportslogos.net/logos/6/223/full/2164_detroit_pistons-primary-2018.png"
+             onClick="getTeams('DET')" alt="">
+        <img id="GSW" src="https://content.sportslogos.net/logos/6/235/full/3152_golden_state_warriors-primary-2020.png"
+             onClick="getTeams('GSW')" alt="">
+        <img id="HOU" src="https://content.sportslogos.net/logos/6/230/full/6830_houston_rockets-primary-2020.png"
+             onClick="getTeams('HOU')" alt="">
+        <img id="IND" src="https://content.sportslogos.net/logos/6/224/full/4812_indiana_pacers-primary-2018.png" alt=""
+             onClick="getTeams('IND')">
+        <img id="LAC" src="https://content.sportslogos.net/logos/6/236/full/5462_los_angeles_clippers-primary-2016.png"
+             onClick="getTeams('LAC')" alt="">
+        <img id="LAL" src="https://content.sportslogos.net/logos/6/237/full/uig7aiht8jnpl1szbi57zzlsh.png" alt=""
+             onClick="getTeams('LAL')">
+        <img id="MEM" src="https://content.sportslogos.net/logos/6/231/full/4373_memphis_grizzlies-primary-2019.png"
+             onClick="getTeams('MEM')" alt="">
+        <img id="MIA" src="https://content.sportslogos.net/logos/6/214/full/burm5gh2wvjti3xhei5h16k8e.gif" alt=""
+             onClick="getTeams('MIA')">
     </div>
 
-    <div class="column">
-        <img src="https://content.sportslogos.net/logos/6/225/full/8275_milwaukee_bucks-primary-2016.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/232/full/9669_minnesota_timberwolves-primary-2018.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/4962/full/2681_new_orleans_pelicans-primary-2014.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/216/full/2nn48xofg0hms8k326cqdmuis.gif" alt="">
-        <img src="https://content.sportslogos.net/logos/6/2687/full/khmovcnezy06c3nm05ccn0oj2.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/217/full/wd9ic7qafgfb0yxs7tem7n5g4.gif" alt="">
-        <img src="https://content.sportslogos.net/logos/6/218/full/7034_philadelphia_76ers-primary-2016.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/238/full/4370_phoenix_suns-primary-2014.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/239/full/9725_portland_trail_blazers-primary-2018.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/240/full/4043_sacramento_kings-primary-2017.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/233/full/2547_san_antonio_spurs-primary-2018.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/227/full/4578_toronto_raptors-primary-2016.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/234/full/6749_utah_jazz-primary-2017.png" alt="">
-        <img src="https://content.sportslogos.net/logos/6/219/full/5671_washington_wizards-primary-2016.png"
-             alt="">
-        <img src="https://content.sportslogos.net/logos/6/222/full/6921_cleveland_cavaliers-primary-2018.png"
-             alt="">
+    <div class="column2">
+        <img id="MIL" src="https://content.sportslogos.net/logos/6/225/full/8275_milwaukee_bucks-primary-2016.png"
+             alt="" onClick="getTeams('MIL')">
+        <img id="MIN"
+             src="https://content.sportslogos.net/logos/6/232/full/9669_minnesota_timberwolves-primary-2018.png"
+             alt="" onClick="getTeams('MIN')">
+        <img id="NOP" src="https://content.sportslogos.net/logos/6/4962/full/2681_new_orleans_pelicans-primary-2014.png"
+             alt="" onClick="getTeams('NOP')">
+        <img id="NYK" src="https://content.sportslogos.net/logos/6/216/full/2nn48xofg0hms8k326cqdmuis.gif" alt=""
+             onClick="getTeams('NYK')">
+        <img id="OKC" src="https://content.sportslogos.net/logos/6/2687/full/khmovcnezy06c3nm05ccn0oj2.png" alt=""
+             onClick="getTeams('OKC')">
+        <img id="ORL" src="https://content.sportslogos.net/logos/6/217/full/wd9ic7qafgfb0yxs7tem7n5g4.gif" alt=""
+             onClick="getTeams('ORL')">
+        <img id="PHI" src="https://content.sportslogos.net/logos/6/218/full/7034_philadelphia_76ers-primary-2016.png"
+             onClick="getTeams('PHI')" alt="">
+        <img id="PHX" src="https://content.sportslogos.net/logos/6/238/full/4370_phoenix_suns-primary-2014.png" alt=""
+             onClick="getTeams('PHX')">
+        <img id="POR"
+             src="https://content.sportslogos.net/logos/6/239/full/9725_portland_trail_blazers-primary-2018.png"
+             onClick="getTeams('POR')" alt="">
+        <img id="SAC" src="https://content.sportslogos.net/logos/6/240/full/4043_sacramento_kings-primary-2017.png"
+             onClick="getTeams('SAC')" alt="">
+        <img id="SAS" src="https://content.sportslogos.net/logos/6/233/full/2547_san_antonio_spurs-primary-2018.png"
+             onClick="getTeams('SAS')" alt="">
+        <img id="TOR" src="https://content.sportslogos.net/logos/6/227/full/4578_toronto_raptors-primary-2016.png"
+             onClick="getTeams('TOR')" alt="">
+        <img id="UTA" src="https://content.sportslogos.net/logos/6/234/full/6749_utah_jazz-primary-2017.png" alt=""
+             onClick="getTeams('UTA')">
+        <img id="WAS" src="https://content.sportslogos.net/logos/6/219/full/5671_washington_wizards-primary-2016.png"
+             onClick="getTeams('WAS')" alt="">
+        <img id="CLE" src="https://content.sportslogos.net/logos/6/222/full/6921_cleveland_cavaliers-primary-2018.png"
+             onClick="getTeams('CLE')" alt="">
     </div>
 
-    <div class="grid-container">
-        <svg class="viz"></svg>
-        <svg class="viz"></svg>
-        <svg class="viz"></svg>
-        <svg class="viz"></svg>
-    </div>
 
 </div>
 
-
+<div class="grid-container">
+    <svg id="viz1"></svg>
+    <svg id="viz2"></svg>
+    <svg id="viz3"></svg>
+    <svg id="viz4"></svg>
 </div>
+
+
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -110,4 +119,39 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+
+<script>
+    var choice1, choice2;
+    var select1 = 0;
+    var select2 = 0;
+
+    function getTeams(str) {
+        if (!Boolean(select1)) {
+            choice1 = str;
+            select1 = 1;
+            let element = document.getElementById(str);
+            element.style.border = "5px solid black"
+        } else if (!Boolean(select2)) {
+            choice2 = str;
+            select2 = 1;
+            let element = document.getElementById(str);
+            element.style.border = "5px solid black";
+            drawViz1(choice1, choice2);
+        } else if (Boolean(select1) && Boolean(select2)) {
+
+            let element1 = document.getElementById(choice1);
+            element1.style.border = "none";
+
+            let element2 = document.getElementById(choice2);
+            element2.style.border = "none";
+
+            select1 = 0;
+            select2 = 0;
+
+
+        }
+
+    }
+</script>
+
 </html>
