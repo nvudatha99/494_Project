@@ -5,6 +5,8 @@ var height;
 var innerWidth;
 var innerHeight;
 
+var attTrack = ["TeamPoints","Steals","Blocks", "FreeThrows", "FieldGoals", "TurnOvers", "TotalRebounds"]; //For Swarm Graph
+
 const margin = {top: 40, right: 60, bottom: 120, left: 100};
 
 var teamStats = [];
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function mousemove(axis) {
+function mousemove(axis,choice1,choice2) {
 
 
     var div = d3.select("body").append('div')
@@ -81,6 +83,9 @@ function mousemove(axis) {
         .style("opacity", 0);
 
     axis.selectAll("rect")
+        .on("click", function(d) {
+            drawViz4(choice1,choice2,d["game"])
+        })
         .on("mousemove", function (d) {
 
             d3.select(this)
@@ -368,7 +373,7 @@ function drawViz1(choice1, choice2) {
                 return "#b0151f";
             }
         })
-        .on('end', mousemove(axis));
+        .on('end', mousemove(axis,choice1,choice2));
 
 
     axis
@@ -410,7 +415,7 @@ function drawViz1(choice1, choice2) {
                 return "#b0151f";
             }
         })
-        .on('end', mousemove(axis2))
+        .on('end', mousemove(axis2,choice1,choice2))
         .style("stroke", "black")
         .style("stroke-width", "1px");
 
@@ -543,7 +548,198 @@ function drawViz3() {
 
 }
 
-function drawViz4() {
-
+function drawViz4(choice1, choice2, selectedGame) {
+    drawSwarm(choice1, choice2, selectedGame);
 }
 
+function drawSwarm(choice1, choice2,selectedGame) {
+    viz4.selectAll("*").remove();
+    var div = d3.select("body").append('div')
+        .attr("class", "tool-tip")
+        .style("opacity", 0);
+
+    console.log("Drawing Swarm:");
+    console.log(teamStats);
+
+    //Used for Graphing
+    let teamShotInfo = [];
+    var IndexID = 1;
+
+    teamStats.forEach((team) => {
+            if (team["Team"] === choice1 && team["Opponent"] === choice2) {
+                var teamShotInfoEntry1 = {GameIndex: IndexID, TeamName: team["Team"], Opp: "No", TeamPoints: team["TeamPoints"], Steals: team["Steals"], GameID: team["Game"], Blocks: team["Blocks"], FreeThrows: team["FreeThrows"], FieldGoals: team["FieldGoals"], TurnOvers: team["Turnovers"], TotalRebounds: team["TotalRebounds"]};
+                var teamShotInfoEntry2 = {GameIndex: IndexID,TeamName: team["Opponent"], Opp: "Yes", TeamPoints: team["OpponentPoints"], Steals: team["Opp.Steals"], GameID: team["Game"], Blocks: team["Opp.Blocks"], FreeThrows: team["Opp.FreeThrows"], FieldGoals: team["Opp.FieldGoals"], TurnOvers: team["Opp.Turnovers"], TotalRebounds: team["Opp.TotalRebounds"]};
+                teamShotInfo.push(teamShotInfoEntry1);
+                teamShotInfo.push(teamShotInfoEntry2);
+                IndexID++;
+            }
+        }
+    );
+
+    console.log(teamShotInfo);
+    let sectors = Array.from(new Set(teamShotInfo.map((d) => d.Opp)));
+    let xCoords = sectors.map((d, i) => (innerWidth/2)-50 + i * 200);
+    let xScale = d3.scaleOrdinal().domain(sectors).range(xCoords);
+
+    let yScale = d3
+        .scaleLinear()
+        .domain([0,150])
+        .range([height - 50, 50]); // using 25 just to provide some margin at the top and bottom
+
+    let size = d3.scaleLinear().domain([0,150]).range([10, 30]);
+
+    var selectedData = teamShotInfo.filter(d => d.GameIndex == selectedGame);
+    // console.log(selectedData);
+    var data = splitTeamData(selectedData);
+
+    //Draw Axis
+    var yAxis = d3.axisLeft(yScale)
+    .tickSize(width-100);
+
+    viz4.append("g").call(yAxis)
+        .attr("transform", `translate(${innerWidth + 90}, 10)`);
+        
+    console.log(innerWidth);
+    viz4.append('text')
+        .attr('transform', 'rotate(90)')
+        .attr('dy', -innerWidth - 100)
+        .attr('dx', '180px')
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .text("Game Attribute Values");
+    
+    viz4.select(".domain").remove();
+    viz4.selectAll(".tick line").attr("stroke", "#777").attr("stroke-dasharray", "2,2");
+
+
+    viz4.append('text')
+        .attr('transform', `translate(${(innerWidth / 2) - 75},${innerHeight + 140})`)
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .text("Team 1");
+
+        viz4.append('text')
+        .attr('transform', `translate(${(innerWidth / 2) + 125},${innerHeight + 140})`)
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .text("Team 2");
+
+        //Draw Dots
+    viz4.selectAll(".circ")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("class", "circ")
+        .attr("stroke", "black")
+        .attr("fill", function(d) {console.log(d); if(d.Opp == 'No'){return "#b0151f";}else{return "#2767cf"}})
+        .attr("r", function(d) {return size(d.att_val);})
+        .attr("cx", (d) => xScale(d.Opp))
+        .attr("cy", (d) => yScale(d.att_val))
+        .on('mouseover', function (d,i) {
+            console.log(i.att + " -> " + i.att_val );
+            d3.select(this)
+                .transition()
+                .duration('50')
+                .attr('opacity', ".5");
+
+
+            div.transition()
+                .duration(50)
+                .style("opacity", 1);
+
+            let val = d.att + " = " + d.att_val;
+            
+            div.html(val)
+                .style("left", (event.clientX + 35) + "px")
+                .style("top", (event.clientY - 10) + "px");
+        })
+        .on('mousemove', function (d,i){
+            let val = d.att + " = " + d.att_val;
+            div.html(val)
+                .style("left", (event.clientX + 35) + "px")
+                .style("top", (event.clientY - 10) + "px");
+        })
+        .on('mouseout', function (d,i) {
+            d3.select(this)
+                .transition()
+                .duration('50')
+                .attr('opacity', "1");
+
+
+            div.transition()
+                .duration(50)
+                .style("opacity", 0);
+        });
+
+        let simulation = d3.forceSimulation(data)
+            .force("x", d3.forceX((d) => {
+                return xScale(d.Opp);
+                }).strength(0.7))
+            .force("y", d3.forceY((d) => {
+                return yScale(d.att_val);
+                }).strength(1))
+            .force("collide", d3.forceCollide((d) => {
+                return size(d.att_val);
+                }))
+            .alphaDecay(1)
+            .alpha(0.3)
+            .on("tick", tick);
+
+        function tick() {
+            viz4.selectAll(".circ")
+                .attr("cx", (d) => d.x)
+                .attr("cy", (d) => d.y);
+        }
+
+        simulation.alphaDecay(0.1);
+        
+}
+
+function moveDots(teamShotInfo, xScale, yScale, size, selectedGame) {
+    var selectedData = teamShotInfo.filter(d => d.GameIndex == selectedGame);
+    var data = splitTeamData(selectedData);
+    viz4.selectAll("circle")
+        .data(data)
+        .transition()
+        .duration(220)
+        .attr("r", function(d) {return size(d.att_val);})
+        .attr("cx", (d) => xScale(d.Opp))
+        .attr("cy", (d) => yScale(d.att_val));
+
+        let simulation = d3.forceSimulation(data)
+        .force("x", d3.forceX((d) => {
+            return xScale(d.Opp);
+            }).strength(0.7))
+        .force("y", d3.forceY((d) => {
+            return yScale(d.att_val);
+            }).strength(1))
+        .force("collide", d3.forceCollide((d) => {
+            return size(d.att_val);
+            }))
+        .alphaDecay(1)
+        .alpha(0.3)
+        .on("tick", tick);
+
+    function tick() {
+        viz4.selectAll(".circ")
+            .attr("cx", (d) => d.x)
+            .attr("cy", (d) => d.y);
+    }
+
+    simulation.alphaDecay(0.1);
+}
+
+function splitTeamData(sData){
+    var res = [];
+    sData.forEach(function(d){
+        Object.keys(d).forEach(function(k){
+            // console.log(k + ' - ' + d[k]);
+            if(attTrack.includes(k)){
+                var circ = {att: k, Opp: d.Opp, att_val: d[k]};
+                res.push(circ);
+            }
+        });
+    });
+    // console.log(res);
+    return res;
+}
