@@ -536,6 +536,11 @@ function drawPie(vizType){
     // Create dummy data
     var data = {a: threepointer, b: fieldgoal, c: freethrow}
 
+    var totalPoints = threepointer + fieldgoal + freethrow;
+    var threePercent = Math.round((threepointer/totalPoints) * 100);
+    var fgPercent = Math.round((fieldgoal/totalPoints) * 100);
+    var ftPercent = Math.round((freethrow/totalPoints) * 100);
+
     // set the color scale
     var color = d3.scaleOrdinal()
         .domain(data)
@@ -546,6 +551,7 @@ function drawPie(vizType){
         .value(function(d) {return d.value; })
     var data_ready = pie(d3.entries(data))
 
+    var div = d3.select("body").append("div").attr("class", "tool-tip").attr("id", teamName);
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
         .selectAll('whatever')
@@ -559,7 +565,28 @@ function drawPie(vizType){
         .attr('fill', function(d){ return(color(d.data.key)) })
         .attr("stroke", "black")
         .style("stroke-width", "2px")
-        .style("opacity", 0.7);
+        .style("opacity", 0.7)
+        .on("mousemove", function (d, i) {
+
+            if(d.data.key === "a"){
+                var tooltip = "Team: " + teamName + "<br> Shots that are thee pointers: " + threePercent + "% ";
+            }
+            else if(d.data.key === "b"){
+                var tooltip = "Team: " + teamName + "<br> Shots that are field goals: " + fgPercent + "% ";
+            }
+            else{
+                var tooltip = "Team: " + teamName + "<br> Shots that are free throws: " + ftPercent + "% ";
+            }
+            //console.log(tooltip);
+            div
+              .html(tooltip)
+              .style("left", d3.event.pageX + 15 + "px")
+              .style("top", d3.event.pageY - 10 + "px")
+              .style("opacity", 1);
+          })
+          .on("mouseout", function (d, i) {
+            div.style("opacity", 0);
+          });
 }
 
 
