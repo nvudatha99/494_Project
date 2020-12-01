@@ -1,3 +1,7 @@
+#selectBox{
+    margin: 1%;
+    margin-left: 6%;
+}
 .tool-tip {
     position: absolute;
     text-align: center;
@@ -7,7 +11,7 @@
     border: 1px solid #313639;
     border-radius: 8px;
     pointer-events: none;
-    font-size: 1.3rem;
+    font-size: 15px;
 }
 .row {
     display: inline-flex;
@@ -85,7 +89,7 @@ h1{
     height: 500px;
     width: 45%;
     margin-left: 1%;
-    margin-top: 1%;
+    margin-top: .5%;
     position: relative;
     display: inline-block;
     float: left;
