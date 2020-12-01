@@ -5,7 +5,7 @@ var height;
 var innerWidth;
 var innerHeight;
 
-var attTrack = ["TeamPoints","Steals","Blocks", "FreeThrows", "FieldGoals", "TurnOvers", "TotalRebounds"]; //For Swarm Graph
+var attTrack = ["TeamPoints","Steals","Blocks", "FreeThrows", "FieldGoals", "TurnOvers", "TotalRebounds","FreeThrowsAttempted","FieldGoalsAttempted","TotalFouls","TotalRebounds","Turnovers"]; //For Swarm Graph
 
 const margin = {top: 40, right: 60, bottom: 120, left: 100};
 
@@ -567,8 +567,8 @@ function drawSwarm(choice1, choice2,selectedGame) {
 
     teamStats.forEach((team) => {
             if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                var teamShotInfoEntry1 = {GameIndex: IndexID, TeamName: team["Team"], Opp: "No", TeamPoints: team["TeamPoints"], Steals: team["Steals"], GameID: team["Game"], Blocks: team["Blocks"], FreeThrows: team["FreeThrows"], FieldGoals: team["FieldGoals"], TurnOvers: team["Turnovers"], TotalRebounds: team["TotalRebounds"]};
-                var teamShotInfoEntry2 = {GameIndex: IndexID,TeamName: team["Opponent"], Opp: "Yes", TeamPoints: team["OpponentPoints"], Steals: team["Opp.Steals"], GameID: team["Game"], Blocks: team["Opp.Blocks"], FreeThrows: team["Opp.FreeThrows"], FieldGoals: team["Opp.FieldGoals"], TurnOvers: team["Opp.Turnovers"], TotalRebounds: team["Opp.TotalRebounds"]};
+                var teamShotInfoEntry1 = {GameIndex: IndexID,TeamName: team["Team"], Opp: "No", TeamPoints: team["TeamPoints"], Steals: team["Steals"], GameID: team["Game"], Blocks: team["Blocks"], FreeThrows: team["FreeThrows"], FieldGoals: team["FieldGoals"], TurnOvers: team["Turnovers"], TotalRebounds: team["TotalRebounds"], FreeThrowsAttempted: team["FreeThrowsAttempted"] , FieldGoalsAttempted: team["FieldGoalsAttempted:"] , TotalFouls: team["TotalFouls"] , TotalRebounds: team["TotalRebounds"] , Turnovers: team["Turnovers"]};
+var teamShotInfoEntry2 = {GameIndex: IndexID,TeamName: team["Opponent"], Opp: "Yes", TeamPoints: team["OpponentPoints"], Steals: team["Opp.Steals"], GameID: team["Game"], Blocks: team["Opp.Blocks"], FreeThrows: team["Opp.FreeThrows"], FieldGoals: team["Opp.FieldGoals"], TurnOvers: team["Opp.Turnovers"], TotalRebounds: team["Opp.TotalRebounds"],FreeThrowsAttempted: team["Opp.FreeThrowsAttempted"] , FieldGoalsAttempted: team["Opp.FieldGoalsAttempted"] , TotalFouls: team["Opp.TotalFouls"] , TotalRebounds: team["Opp.TotalRebounds"] , Turnovers: team["Opp.Turnovers"]};
                 teamShotInfo.push(teamShotInfoEntry1);
                 teamShotInfo.push(teamShotInfoEntry2);
                 IndexID++;
@@ -583,10 +583,10 @@ function drawSwarm(choice1, choice2,selectedGame) {
 
     let yScale = d3
         .scaleLinear()
-        .domain([0,150])
+        .domain([0,125])
         .range([height - 50, 50]); // using 25 just to provide some margin at the top and bottom
 
-    let size = d3.scaleLinear().domain([0,150]).range([10, 30]);
+    let size = d3.scaleLinear().domain([0,150]).range([15, 40]);
 
     var selectedData = teamShotInfo.filter(d => d.GameIndex == selectedGame);
     // console.log(selectedData);
@@ -606,6 +606,8 @@ function drawSwarm(choice1, choice2,selectedGame) {
         .attr('dx', '180px')
         .style("fill", "gray")
         .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight"," 500")
         .text("Game Attribute Values");
     
     viz4.select(".domain").remove();
@@ -613,16 +615,32 @@ function drawSwarm(choice1, choice2,selectedGame) {
 
 
     viz4.append('text')
-        .attr('transform', `translate(${(innerWidth / 2) - 75},${innerHeight + 140})`)
+        .attr('transform', `translate(${(innerWidth / 2) - 75},${innerHeight + 150})`)
         .style("fill", "gray")
         .style('text-anchor', 'center')
         .text("Team 1");
 
         viz4.append('text')
-        .attr('transform', `translate(${(innerWidth / 2) + 125},${innerHeight + 140})`)
+        .attr('transform', `translate(${(innerWidth / 2) + 125},${innerHeight + 150})`)
         .style("fill", "gray")
         .style('text-anchor', 'center')
         .text("Team 2");
+
+
+    function check() {
+        if(selectedGame == null) {
+            return "0";
+        } else {
+            return selectedGame.toString();
+        }
+    }
+    viz4.append('text')
+        .attr('transform', `translate(${(innerWidth / 2) - 25},${innerHeight - 320})`)
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight"," 500")
+        .text("Statistics for Game:\t" + check());
 
         //Draw Dots
     viz4.selectAll(".circ")
@@ -674,15 +692,15 @@ function drawSwarm(choice1, choice2,selectedGame) {
         let simulation = d3.forceSimulation(data)
             .force("x", d3.forceX((d) => {
                 return xScale(d.Opp);
-                }).strength(0.7))
+                }).strength(.7))
             .force("y", d3.forceY((d) => {
                 return yScale(d.att_val);
                 }).strength(1))
             .force("collide", d3.forceCollide((d) => {
                 return size(d.att_val);
                 }))
-            .alphaDecay(1)
-            .alpha(0.3)
+            .alphaDecay(.5)
+            .alpha(.3)
             .on("tick", tick);
 
         function tick() {

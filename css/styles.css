@@ -97,3 +97,8 @@ h1{
     float: left;
     vertical-align: top;
 }
+
+.swarmTitle {
+    font-weight: bolder;
+    font-size: larger;
+}
