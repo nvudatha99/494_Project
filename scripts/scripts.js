@@ -36,6 +36,37 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (values) {
             teamStats = values[0];
 
+            drawPie("#ATLviz");
+            drawPie("#BOSviz");
+            drawPie("#BRKviz");
+            drawPie("#CHOviz");
+            drawPie("#CHIviz");
+            drawPie("#DALviz");
+            drawPie("#DENviz");
+            drawPie("#DETviz");
+            drawPie("#GSWviz");
+            drawPie("#HOUviz");
+            drawPie("#INDviz");
+            drawPie("#LACviz");
+            drawPie("#LALviz");
+            drawPie("#MEMviz");
+            drawPie("#MIAviz");
+
+            drawPie("#MILviz");
+            drawPie("#MINviz");
+            drawPie("#NOPviz");
+            drawPie("#NYKviz");
+            drawPie("#OKCviz");
+            drawPie("#ORLviz");
+            drawPie("#PHIviz");
+            drawPie("#PHOviz");
+            drawPie("#PORviz");
+            drawPie("#SACviz");
+            drawPie("#SASviz");
+            drawPie("#TORviz");
+            drawPie("#UTAviz");
+            drawPie("#WASviz");
+            drawPie("#CLEviz");
         });
 
 
@@ -442,6 +473,66 @@ function drawViz1(choice1, choice2) {
         .text(choice2);
 
 
+}
+
+function drawPie(vizType){
+
+    var threepointer = 0;
+    var fieldgoal = 0;
+    var freethrow = 0;
+    var teamName = vizType.substring(1,4);
+
+
+    teamStats.forEach((team) => {
+        if(teamName === team["Team"]){
+            freethrow += parseInt(team["FreeThrows"]);
+            fieldgoal += (parseInt(team["FieldGoals"]) - parseInt(team["X3PointShots"])) * 2;
+            threepointer += parseInt(team["X3PointShots"]) * 3;
+        }
+    });
+
+    var width1 = 150
+        height1 = 150
+        margin1 = 5
+
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    var radius = Math.min(width1, height1) / 2 - margin1
+
+    // append the svg object to the div called 'my_dataviz'
+    var svg = d3.select(vizType)
+    .append("svg")
+        .attr("width", width1)
+        .attr("height", height1)
+    .append("g")
+        .attr("transform", "translate(" + width1/2 + "," + height1/2 + ")");
+
+    // Create dummy data
+    var data = {a: threepointer, b: fieldgoal, c: freethrow}
+
+    // set the color scale
+    var color = d3.scaleOrdinal()
+    .domain(data)
+    .range(["#000000", "#ff0000", "#1500ff"])
+
+    // Compute the position of each group on the pie:
+    var pie = d3.pie()
+    .value(function(d) {return d.value; })
+    var data_ready = pie(d3.entries(data))
+
+    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    svg
+    .selectAll('whatever')
+    .data(data_ready)
+    .enter()
+    .append('path')
+    .attr('d', d3.arc()
+        .innerRadius(60)         // This is the size of the donut hole
+        .outerRadius(radius)
+    )
+    .attr('fill', function(d){ return(color(d.data.key)) })
+    .attr("stroke", "black")
+    .style("stroke-width", "2px")
+    .style("opacity", 0.7);
 }
 
 function drawViz2() {
