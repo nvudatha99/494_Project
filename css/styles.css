@@ -21,7 +21,7 @@
 .column1 {
     flex: 50%;
     max-width: 45%;
-    margin-left: 5%;
+    margin-left: 9%;
 }
 .column2 {
     flex: 50%;
@@ -29,16 +29,15 @@
 }
 
 .grid-container {
-    margin: auto;
-    max-width: 1920px;
-    width: 1920px;
+    margin-left: 5%;
+    width: 100%;
 }
 
 
 img {
     width: 6em;
     height: 6em;
-    padding-top: 8px;
+    /*padding-top: 8px;*/
     margin-left: 20px;
 }
 
