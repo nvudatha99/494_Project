@@ -2,6 +2,10 @@
     margin: 1%;
     margin-left: 6%;
 }
+
+.zoom{
+    /*zoom: 60%;*/
+}
 .tool-tip {
     position: absolute;
     text-align: center;
@@ -20,12 +24,13 @@
 
 .column1 {
     flex: 50%;
-    max-width: 45%;
-    margin-left: 9%;
+    max-width: 90%;
+    margin-left: 6%;
 }
 .column2 {
     flex: 50%;
     max-width: 45%;
+
 }
 
 .grid-container {

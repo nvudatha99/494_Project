@@ -1,4 +1,4 @@
-var viz1, viz2, viz3, viz4, g1, dropDown;
+var viz1, viz2, viz3, viz4, g1, g2, dropDown;
 
 var width;
 var height;
@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .append('g')
         .attr("id", "g1")
         .attr('transform', `translate(${margin.left},${margin.top + 20})`);
+    g2 = viz2
+        .append('g')
+        .attr("id", "g1")
+        .attr('transform', `translate(${margin.left},${margin.top + 20})`);
 
 
     Promise.all([
@@ -37,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ])
         .then(function (values) {
             teamStats = values[0];
+
 
             drawPie("#ATLviz");
             drawPie("#BOSviz");
@@ -69,6 +74,9 @@ document.addEventListener('DOMContentLoaded', function () {
             drawPie("#UTAviz");
             drawPie("#WASviz");
             drawPie("#CLEviz");
+
+            info();
+
         });
 
 
@@ -484,6 +492,16 @@ function drawViz1(choice1, choice2) {
 
 }
 
+function info() {
+
+    let text = "";
+    g2.append("text")
+        .attr("transform", `translate(${0},${(innerHeight/2) + 65})`)
+        .attr("opacity", 1)
+        .attr("font-size", "100px")
+        .text(text);
+}
+
 function drawPie(vizType){
 
     var threepointer = 0;
@@ -544,13 +562,6 @@ function drawPie(vizType){
         .style("opacity", 0.7);
 }
 
-function drawViz2() {
-
-}
-
-function drawViz3() {
-
-}
 
 function drawViz4(choice1, choice2, selectedGame) {
     drawSwarm(choice1, choice2, selectedGame);

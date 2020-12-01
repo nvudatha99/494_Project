@@ -28,152 +28,266 @@
 </nav>
 <!-- End Nav Bar Code -->
 
+<h1 style="text-decoration: underline; width: 100%; margin-left: 4%; ">Select A Team To Analyze</h1>
 
-<div class="row">
-    <h1 style="text-decoration: underline; width: 100%; margin-left: 4%; ">Select A Team To Analyze</h1>
 
-    <div class="column1">
-        <svg id="ATLviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="ATL" src="https://content.sportslogos.net/logos/6/220/full/9168_atlanta_hawks-primary-2016.png"
-                 alt="" onClick="getTeams('ATL')"></foreignobject></svg>
+<div class="zoom">
+    <div class="row">
 
-        <svg id="BOSviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="BOS" src="https://content.sportslogos.net/logos/6/213/full/slhg02hbef3j1ov4lsnwyol5o.png" alt=""
-                 onClick="getTeams('BOS')"></foreignobject></svg>
+        <div class="column1">
+            <svg id="ATLviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="ATL"
+                         src="https://content.sportslogos.net/logos/6/220/full/9168_atlanta_hawks-primary-2016.png"
+                         alt="" onClick="getTeams('ATL')"></foreignobject>
+            </svg>
 
-        <svg id="BRKviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="BRK" src="https://content.sportslogos.net/logos/6/3786/full/930_brooklyn-nets-partial-2013.png" alt=""
-                 onClick="getTeams('BRK')"></foreignobject></svg>
+            <svg id="BOSviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="BOS" src="https://content.sportslogos.net/logos/6/213/full/slhg02hbef3j1ov4lsnwyol5o.png"
+                         alt=""
+                         onClick="getTeams('BOS')"></foreignobject>
+            </svg>
 
-        <svg id="CHOviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="CHO" src="https://content.sportslogos.net/logos/6/5120/full/1926_charlotte__hornets_-primary-2015.png"
-                 alt="" onClick="getTeams('CHO')"></foreignobject></svg>
+            <svg id="BRKviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="BRK"
+                         src="https://content.sportslogos.net/logos/6/3786/full/930_brooklyn-nets-partial-2013.png"
+                         alt=""
+                         onClick="getTeams('BRK')"></foreignobject>
+            </svg>
 
-        <svg id="CHIviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="CHI" src="https://content.sportslogos.net/logos/6/221/full/hj3gmh82w9hffmeh3fjm5h874.png" alt=""
-                 onClick="getTeams('CHI')"></foreignobject></svg>
+            <svg id="CHOviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="CHO"
+                         src="https://content.sportslogos.net/logos/6/5120/full/1926_charlotte__hornets_-primary-2015.png"
+                         alt="" onClick="getTeams('CHO')"></foreignobject>
+            </svg>
 
-        <svg id="DALviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="DAL" src="https://content.sportslogos.net/logos/6/228/full/3463_dallas_mavericks-primary-2018.png"
-                 alt="" onClick="getTeams('DAL')"></foreignobject></svg>
+            <svg id="CHIviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="CHI" src="https://content.sportslogos.net/logos/6/221/full/hj3gmh82w9hffmeh3fjm5h874.png"
+                         alt=""
+                         onClick="getTeams('CHI')"></foreignobject>
+            </svg>
 
-        <svg id="DENviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="DEN" src="https://content.sportslogos.net/logos/6/229/full/8926_denver_nuggets-primary-2019.png" alt=""
-                 onClick="getTeams('DEN')"></foreignobject></svg>
+            <svg id="DALviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="DAL"
+                         src="https://content.sportslogos.net/logos/6/228/full/3463_dallas_mavericks-primary-2018.png"
+                         alt="" onClick="getTeams('DAL')"></foreignobject>
+            </svg>
 
-        <svg id="DETviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="DET" src="https://content.sportslogos.net/logos/6/223/full/2164_detroit_pistons-primary-2018.png"
-                 onClick="getTeams('DET')" alt=""></foreignobject></svg>
+            <svg id="DENviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="DEN"
+                         src="https://content.sportslogos.net/logos/6/229/full/8926_denver_nuggets-primary-2019.png"
+                         alt=""
+                         onClick="getTeams('DEN')"></foreignobject>
+            </svg>
 
-        <svg id="GSWviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="GSW" src="https://content.sportslogos.net/logos/6/235/full/3152_golden_state_warriors-primary-2020.png"
-                 onClick="getTeams('GSW')" alt=""></foreignobject></svg>
+            <svg id="DETviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="DET"
+                         src="https://content.sportslogos.net/logos/6/223/full/2164_detroit_pistons-primary-2018.png"
+                         onClick="getTeams('DET')" alt=""></foreignobject>
+            </svg>
 
-        <svg id="HOUviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="HOU" src="https://content.sportslogos.net/logos/6/230/full/6830_houston_rockets-primary-2020.png"
-                 onClick="getTeams('HOU')" alt=""></foreignobject></svg>
+            <svg id="GSWviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="GSW"
+                         src="https://content.sportslogos.net/logos/6/235/full/3152_golden_state_warriors-primary-2020.png"
+                         onClick="getTeams('GSW')" alt=""></foreignobject>
+            </svg>
 
-        <svg id="INDviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="IND" src="https://content.sportslogos.net/logos/6/224/full/4812_indiana_pacers-primary-2018.png" alt=""
-                 onClick="getTeams('IND')"></foreignobject></svg>
+            <svg id="HOUviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="HOU"
+                         src="https://content.sportslogos.net/logos/6/230/full/6830_houston_rockets-primary-2020.png"
+                         onClick="getTeams('HOU')" alt=""></foreignobject>
+            </svg>
 
-        <svg id="LACviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="LAC" src="https://content.sportslogos.net/logos/6/236/full/5462_los_angeles_clippers-primary-2016.png"
-                 onClick="getTeams('LAC')" alt=""></foreignobject></svg>
+            <svg id="INDviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="IND"
+                         src="https://content.sportslogos.net/logos/6/224/full/4812_indiana_pacers-primary-2018.png"
+                         alt=""
+                         onClick="getTeams('IND')"></foreignobject>
+            </svg>
 
-        <svg id="LALviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="LAL" src="https://content.sportslogos.net/logos/6/237/full/uig7aiht8jnpl1szbi57zzlsh.png" alt=""
-                 onClick="getTeams('LAL')"></foreignobject></svg>
+            <svg id="LACviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="LAC"
+                         src="https://content.sportslogos.net/logos/6/236/full/5462_los_angeles_clippers-primary-2016.png"
+                         onClick="getTeams('LAC')" alt=""></foreignobject>
+            </svg>
 
-        <svg id="MEMviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="MEM" src="https://content.sportslogos.net/logos/6/231/full/4373_memphis_grizzlies-primary-2019.png"
-                 onClick="getTeams('MEM')" alt=""></foreignobject></svg>
+            <svg id="LALviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="LAL" src="https://content.sportslogos.net/logos/6/237/full/uig7aiht8jnpl1szbi57zzlsh.png"
+                         alt=""
+                         onClick="getTeams('LAL')"></foreignobject>
+            </svg>
 
-        <svg id="MIAviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="MIA" src="https://content.sportslogos.net/logos/6/214/full/burm5gh2wvjti3xhei5h16k8e.gif" alt=""
-                 onClick="getTeams('MIA')"></foreignobject></svg>
+            <svg id="MEMviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="MEM"
+                         src="https://content.sportslogos.net/logos/6/231/full/4373_memphis_grizzlies-primary-2019.png"
+                         onClick="getTeams('MEM')" alt=""></foreignobject>
+            </svg>
+
+            <svg id="MIAviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="MIA" src="https://content.sportslogos.net/logos/6/214/full/burm5gh2wvjti3xhei5h16k8e.gif"
+                         alt=""
+                         onClick="getTeams('MIA')"></foreignobject>
+            </svg>
+
+            <svg id="MILviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="MIL"
+                         src="https://content.sportslogos.net/logos/6/225/full/8275_milwaukee_bucks-primary-2016.png"
+                         alt="" onClick="getTeams('MIL')"></foreignobject>
+            </svg>
+
+            <svg id="MINviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="MIN"
+                         src="https://content.sportslogos.net/logos/6/232/full/9669_minnesota_timberwolves-primary-2018.png"
+                         alt="" onClick="getTeams('MIN')"></foreignobject>
+            </svg>
+
+            <svg id="NOPviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="NOP"
+                         src="https://content.sportslogos.net/logos/6/4962/full/2681_new_orleans_pelicans-primary-2014.png"
+                         alt="" onClick="getTeams('NOP')"></foreignobject>
+            </svg>
+
+            <svg id="NYKviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="NYK" src="https://content.sportslogos.net/logos/6/216/full/2nn48xofg0hms8k326cqdmuis.gif"
+                         alt=""
+                         onClick="getTeams('NYK')"></foreignobject>
+            </svg>
+
+            <svg id="OKCviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="OKC" src="https://content.sportslogos.net/logos/6/2687/full/khmovcnezy06c3nm05ccn0oj2.png"
+                         alt=""
+                         onClick="getTeams('OKC')"></foreignobject>
+            </svg>
+
+            <svg id="ORLviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="ORL" src="https://content.sportslogos.net/logos/6/217/full/wd9ic7qafgfb0yxs7tem7n5g4.gif"
+                         alt=""
+                         onClick="getTeams('ORL')"></foreignobject>
+            </svg>
+
+            <svg id="PHIviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="PHI"
+                         src="https://content.sportslogos.net/logos/6/218/full/7034_philadelphia_76ers-primary-2016.png"
+                         onClick="getTeams('PHI')" alt=""></foreignobject>
+            </svg>
+
+            <svg id="PHOviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="PHX"
+                         src="https://content.sportslogos.net/logos/6/238/full/4370_phoenix_suns-primary-2014.png"
+                         alt=""
+                         onClick="getTeams('PHX')"></foreignobject>
+            </svg>
+
+            <svg id="PORviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="POR"
+                         src="https://content.sportslogos.net/logos/6/239/full/9725_portland_trail_blazers-primary-2018.png"
+                         onClick="getTeams('POR')" alt=""></foreignobject>
+            </svg>
+
+            <svg id="SACviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="SAC"
+                         src="https://content.sportslogos.net/logos/6/240/full/4043_sacramento_kings-primary-2017.png"
+                         onClick="getTeams('SAC')" alt=""></foreignobject>
+            </svg>
+
+            <svg id="SASviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="SAS"
+                         src="https://content.sportslogos.net/logos/6/233/full/2547_san_antonio_spurs-primary-2018.png"
+                         onClick="getTeams('SAS')" alt=""></foreignobject>
+            </svg>
+
+            <svg id="TORviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="TOR"
+                         src="https://content.sportslogos.net/logos/6/227/full/4578_toronto_raptors-primary-2016.png"
+                         onClick="getTeams('TOR')" alt=""></foreignobject>
+            </svg>
+
+            <svg id="UTAviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="UTA" src="https://content.sportslogos.net/logos/6/234/full/6749_utah_jazz-primary-2017.png"
+                         alt=""
+                         onClick="getTeams('UTA')"></foreignobject>
+            </svg>
+
+            <svg id="WASviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="WAS"
+                         src="https://content.sportslogos.net/logos/6/219/full/5671_washington_wizards-primary-2016.png"
+                         onClick="getTeams('WAS')" alt=""></foreignobject>
+            </svg>
+
+            <svg id="CLEviz" width="150" height="150">
+                <foreignobject class="node" x="10" y="25" width="150" height="150">
+                    <img id="CLE"
+                         src="https://content.sportslogos.net/logos/6/222/full/6921_cleveland_cavaliers-primary-2018.png"
+                        <!----> onClick="getTeams('CLE')" alt=""></foreignobject>
+            </svg>
+        </div>
+
+
+        <div class="grid-container">
+            <div style="margin-left: -4%">
+                <select id="selectBox" onchange="drawViz1(choice1, choice2)">
+                    <option value="field-goals">Fields Goals</option>
+                    <option value="blocks">Blocks</option>
+                    <option value="rebounds">Rebounds</option>
+                    <option value="assists">Assists</option>
+                    <option value="steals">Steals</option>
+                </select>
+            </div>
+            <svg id="viz1"></svg>
+            <div id="viz2">
+                <p style="font-size: 20px; margin-left: 3%; margin-top: 2%">1.) In order to utilize all the visualizations properly,
+                    select two teams you would like to compare stats of.
+                </p>
+                <p style="font-size: 20px; margin-left: 3%">2.) Once Choose, click on a bar within the bar chart and this will
+                    bring up a corresponding swarm chart
+                    which will allow for more in depth analyzation of the teams stats.</p>
+                <p style="font-size: 20px; margin-left: 3%">3.) Additionally, all the rings around the teams logos are each of
+                    the free throw, mid range as well as
+                    the three point percentage of that team.
+                </p>
+                <p style="font-size: 20px; margin-left: 3%">4.) Finally, the line chart shows more comparative data and will
+                    indicate where certain stats overlap
+                    in order to show similarities or strong suits of another team
+                </p>
+            </div>
+            <svg id="viz3"></svg>
+            <svg id="viz4"></svg>
+        </div>
+
     </div>
-
-    <div class="column2">
-
-        <svg id="MILviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150" >
-            <img id="MIL" src="https://content.sportslogos.net/logos/6/225/full/8275_milwaukee_bucks-primary-2016.png"
-                 alt=""  onClick="getTeams('MIL')"></foreignobject></svg>
-
-        <svg id="MINviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150" >
-            <img id="MIN" src="https://content.sportslogos.net/logos/6/232/full/9669_minnesota_timberwolves-primary-2018.png"
-                 alt=""  onClick="getTeams('MIN')"></foreignobject></svg>
-
-        <svg id="NOPviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="NOP" src="https://content.sportslogos.net/logos/6/4962/full/2681_new_orleans_pelicans-primary-2014.png"
-                 alt="" onClick="getTeams('NOP')"></foreignobject></svg>
-
-        <svg id="NYKviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="NYK" src="https://content.sportslogos.net/logos/6/216/full/2nn48xofg0hms8k326cqdmuis.gif" alt=""
-                 onClick="getTeams('NYK')"></foreignobject></svg>
-
-        <svg id="OKCviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="OKC" src="https://content.sportslogos.net/logos/6/2687/full/khmovcnezy06c3nm05ccn0oj2.png" alt=""
-                 onClick="getTeams('OKC')"></foreignobject></svg>
-
-        <svg id="ORLviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="ORL" src="https://content.sportslogos.net/logos/6/217/full/wd9ic7qafgfb0yxs7tem7n5g4.gif" alt=""
-                 onClick="getTeams('ORL')"></foreignobject></svg>
-
-        <svg id="PHIviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="PHI" src="https://content.sportslogos.net/logos/6/218/full/7034_philadelphia_76ers-primary-2016.png"
-                 onClick="getTeams('PHI')" alt=""></foreignobject></svg>
-
-        <svg id="PHOviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="PHX" src="https://content.sportslogos.net/logos/6/238/full/4370_phoenix_suns-primary-2014.png" alt=""
-                 onClick="getTeams('PHX')"></foreignobject></svg>
-
-        <svg id="PORviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="POR" src="https://content.sportslogos.net/logos/6/239/full/9725_portland_trail_blazers-primary-2018.png"
-                 onClick="getTeams('POR')" alt=""></foreignobject></svg>
-
-        <svg id="SACviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="SAC" src="https://content.sportslogos.net/logos/6/240/full/4043_sacramento_kings-primary-2017.png"
-                 onClick="getTeams('SAC')" alt=""></foreignobject></svg>
-
-        <svg id="SASviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="SAS" src="https://content.sportslogos.net/logos/6/233/full/2547_san_antonio_spurs-primary-2018.png"
-                 onClick="getTeams('SAS')" alt=""></foreignobject></svg>
-
-        <svg id="TORviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="TOR" src="https://content.sportslogos.net/logos/6/227/full/4578_toronto_raptors-primary-2016.png"
-                 onClick="getTeams('TOR')" alt=""></foreignobject></svg>
-
-        <svg id="UTAviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="UTA" src="https://content.sportslogos.net/logos/6/234/full/6749_utah_jazz-primary-2017.png" alt=""
-                 onClick="getTeams('UTA')"></foreignobject></svg>
-
-        <svg id="WASviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="WAS" src="https://content.sportslogos.net/logos/6/219/full/5671_washington_wizards-primary-2016.png"
-                 onClick="getTeams('WAS')" alt=""></foreignobject></svg>
-
-        <svg id="CLEviz" width="150" height="150"><foreignobject class="node" x="10" y="25" width="150" height="150">
-            <img id="CLE" src="https://content.sportslogos.net/logos/6/222/full/6921_cleveland_cavaliers-primary-2018.png"
-                 onClick="getTeams('CLE')" alt=""></foreignobject></svg>
-    </div>
-
 
 </div>
 
-<select id="selectBox" onchange="drawViz1(choice1, choice2)">
-    <option value="field-goals">Fields Goals</option>
-    <option value="blocks">Blocks</option>
-    <option value="rebounds">Rebounds</option>
-    <option value="assists">Assists</option>
-    <option value="steals">Steals</option>
-</select>
 
-<div class="grid-container">
-    <svg id="viz1"></svg>
-    <svg id="viz2"></svg>
-    <svg id="viz3"></svg>
-    <svg id="viz4"></svg>
-</div>
+
 
 
 </body>
@@ -235,7 +349,6 @@
 
     }
 </script>
-
 
 
 </html>
