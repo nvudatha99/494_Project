@@ -1,4 +1,4 @@
-var viz1, viz2, viz3, viz4, g1, g2, dropDown;
+var viz1, viz2, viz3, viz4, g1, g2, g3, dropDown;
 
 var width;
 var height;
@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .attr("id", "g1")
         .attr('transform', `translate(${margin.left},${margin.top + 20})`);
     g2 = viz2
+        .append('g')
+        .attr("id", "g1")
+        .attr('transform', `translate(${margin.left},${margin.top + 20})`);
+    g3 = viz3
         .append('g')
         .attr("id", "g1")
         .attr('transform', `translate(${margin.left},${margin.top + 20})`);
@@ -620,6 +624,203 @@ function drawPie(vizType){
         });
 }
 
+function drawViz3(choice1, choice2) {
+
+    console.log(choice1);
+    console.log(choice2);
+
+    g3.select("#axis-g").remove();
+
+    let axis = g3.append("g").attr("id", "axis-g");
+
+
+    // console.log(teamStats);
+
+    let teamShotInfoOne = [];
+    let teamShotInfoTwo = [];
+
+    //Used for range
+    let Range1 = [];
+    let Range2 = [];
+    let i = 1;
+
+    let selectVal = d3.select("#selectBox").property("value");
+    if (selectVal === "field-goals") {
+        teamStats.forEach((team) => {
+                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
+                    teamShotInfoOne.push(new Statistic(team["FieldGoals."], i));
+                    teamShotInfoTwo.push(new Statistic((team["Opp.FieldGoals."] * -1), i));
+                    Range1.push(+team["FieldGoals."]);
+                    Range2.push(+team["Opp.FieldGoals."]);
+                    i++;
+                }
+            }
+        );
+    } else if (selectVal === "assists") {
+        teamStats.forEach((team) => {
+                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
+                    teamShotInfoOne.push(new Statistic(team["Assists"], i));
+                    teamShotInfoTwo.push(new Statistic((team["Opp.Assists"] * -1), i));
+                    Range1.push(+team["Assists"]);
+                    Range2.push(+team["Opp.Assists"]);
+                    i++;
+                }
+            }
+        );
+    } else if (selectVal === "blocks") {
+        teamStats.forEach((team) => {
+                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
+                    teamShotInfoOne.push(new Statistic(team["Blocks"], i));
+                    teamShotInfoTwo.push(new Statistic((team["Opp.Blocks"] * -1), i));
+                    Range1.push(+team["Blocks"]);
+                    Range2.push(+team["Opp.Blocks"]);
+                    i++;
+                }
+            }
+        );
+    } else if (selectVal === "steals") {
+        teamStats.forEach((team) => {
+                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
+                    teamShotInfoOne.push(new Statistic(team["Steals"], i));
+                    teamShotInfoTwo.push(new Statistic((team["Opp.Steals"] * -1), i));
+                    Range1.push(+team["Steals"]);
+                    Range2.push(+team["Opp.Steals"]);
+                    i++;
+                }
+            }
+        );
+    } else if (selectVal === "rebounds") {
+        teamStats.forEach((team) => {
+                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
+                    teamShotInfoOne.push(new Statistic(team["OffRebounds"], i));
+                    teamShotInfoTwo.push(new Statistic((team["Opp.OffRebounds"] * -1), i));
+                    Range1.push(+team["OffRebounds"]);
+                    Range2.push(+team["Opp.OffRebounds"]);
+                    i++;
+                }
+            }
+        );
+    }
+
+    let pos = innerWidth / Range1.length;
+
+
+    let range;
+    if (Math.max(...Range2) < Math.max(...Range1)) {
+        range = Math.max(...Range1);
+    } else {
+        range = Math.max(...Range2);
+    }
+    var yScale = d3.scaleLinear()
+        .domain([0, range])
+        .range([0, 168]);
+
+
+    //used for the positive and negative axis values
+    var yAxisScale = d3.scaleLinear()
+        .domain([0, range])
+        .range([innerHeight, 0]);
+
+    var xScale = d3.scaleLinear()
+        .range([0, innerWidth])
+        .domain([0, teamShotInfoOne.length]);
+
+    console.log("Teaminfo1:", teamShotInfoOne);
+    console.log("Teaminfo2:", teamShotInfoTwo);
+
+    const singleLine = d3.line().curve(d3.curveNatural)
+        .x(d => xScale(d.game))
+        .y(d => yAxisScale(d.val))
+
+    const singleLine2 = d3.line().curve(d3.curveNatural)
+        .x(d => xScale(d.game))
+        .y(d => yAxisScale(d.val))
+
+    axis.append('path')
+        .datum(teamShotInfoOne)
+        // .attr('class', 'singleLine')
+        .style('fill', 'none')
+        .style('stroke', 'red')
+        .style('stroke-width', '2')
+        .attr('d', singleLine);
+
+    axis.selectAll("dot")
+        .data(teamShotInfoOne)
+        .enter().append("circle")
+        .style("fill", "red")
+        .attr("r", 4)
+        .attr("cx", function (d) {
+            console.log(d.game)
+            return xScale(d.game);
+        })
+        .attr("cy", function (d) {
+            console.log(d.val)
+            return yAxisScale(Math.abs(d.val));
+        })
+
+
+    axis.append('path')
+        .datum(teamShotInfoTwo)
+        // .attr('class', 'singleLine')
+        .style('fill', 'none')
+        .style('stroke', 'red')
+        .style('stroke-width', '2')
+        .attr('d', singleLine2);
+
+    axis.selectAll("dot")
+        .data(teamShotInfoTwo)
+        .enter().append("circle")
+        .attr("r", 4)
+        .style("fill", "blue")
+        .attr("cx", function (d) {
+            console.log(d.game)
+            return xScale(d.game);
+        })
+        .attr("cy", function (d) {
+            console.log(d.val)
+            return yAxisScale(Math.abs(d.val));
+        })
+
+
+    var yAxis = d3.axisLeft(yAxisScale);
+
+    var formatter = d3.format("0");
+
+
+    axis.append("g").call(yAxis
+        .tickFormat(function (d) {
+            if (d < 0) d = -d; // No nagative labels
+            return formatter(d);
+        }))
+        .attr("transform", "translate(0," + 0 + ")");
+
+
+    var xAxis = d3.axisBottom(xScale);/*.tickFormat("");remove tick label*/
+
+    axis.append("g").call(xAxis)
+        .attr("transform", "translate(0," + (innerHeight) + ")");
+
+
+    AxisLabels(axis);
+
+
+    //USE LATER
+    axis.append("text")
+        // .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) - 65})`)
+        .attr("x", margin.bottom)
+        .attr("y", margin.bottom + 290)
+        .attr("opacity", 1)
+        .attr("font-size", "12px")
+        .text(choice1);
+
+    axis.append("text")
+        .attr("x", margin.bottom + 370)
+        .attr("y", margin.bottom + 290)
+        .attr("opacity", 1)
+        .attr("font-size", "12px")
+        .text(choice2);
+
+}
 
 function drawViz4(choice1, choice2, selectedGame) {
     drawSwarm(choice1, choice2, selectedGame);
